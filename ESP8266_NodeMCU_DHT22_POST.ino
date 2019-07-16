@@ -19,6 +19,7 @@ const char* keySensor = "a81bff24-0435-47c2-823b-a2232a9aa75e";
 const char* ssid = "Home1";                   // Tên Wifi
 const char* password = "doimatthienthan";     // Mật khẩu
 const char* api = "http://192.168.1.5:8000/iot/cron_handle/";
+const char* token = "Token c2202e220bed4f78ed4c78e69d5f73cfcbd66482"
 ESP8266WiFiMulti WiFiMulti;
 
 /*------------------------DHT SENSOR------------------------*/
@@ -100,6 +101,7 @@ void loop()
     http.begin(client, api);
     // Khai báo content-type header
     http.addHeader("Content-Type", "application/json");
+    http.addHeader("Authorization", token);
     int httpCode = http.POST(output);
     //Get the response payload
     String payload = http.getString();
